@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FastAPI CORS Preflight Demo</title>
+</head>
+<body>
+  <h1>FastAPI CORS Preflight Demo</h1>
+
+  <button id="getBtn">GET Data</button>
+  <button id="postBtn">POST Data</button>
+
+  <script>
+    document.getElementById("getBtn").addEventListener("click", async () => {
+      const res = await fetch("http://127.0.0.1:5000/api/data");
+      const data = await res.json();
+      console.log("GET response:", data);
+      alert(JSON.stringify(data));
+    });
+
+    document.getElementById("postBtn").addEventListener("click", async () => {
+      const res = await fetch("http://127.0.0.1:5000/api/data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Vrishab" })
+      });
+      const data = await res.json();
+      console.log("POST response:", data);
+      alert(JSON.stringify(data));
+    });
+  </script>
+</body>
+</html>
